@@ -4,7 +4,22 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "build": "webpack --config webpack.config.js"
+    "webpack": "webpack",
+    "webpack-dev-server": "webpack-dev-server",
+    "gulp": "./node_modules/gulp/bin/gulp.js",
+    "gulp:sprites": "gulp sprites",
+    "gulp:modernizr": "gulp modernizr",
+    "tunnel": "ngrok http --host-header=rewrite 8080",
+    "debug": "node --inspect --inspect-brk ./node_modules/webpack/bin/webpack.js",
+    "build": "webpack --env.mode production --config ./build-utils/webpack/webpack.common.babel.js --display-error-details",
+    "watch": "webpack --env.mode development --watch --config ./build-utils/webpack/webpack.common.babel.js --display-error-details",
+    "prod:serve": "http-server dist/ -p 8888 -o",
+    "prod:debug": "npm run debug -- --env.mode production",
+    "prod:analyze": "npm run prod -- --env.presets analyze",
+    "prod:compress": "npm run prod -- --env.presets compress --env.presets analyze",
+    "dev:debug": "npm run debug -- --env.mode development",
+    "prod": "npm run webpack -- --config ./build-utils/webpack/webpack.common.babel.js --env.mode production",
+    "dev": "npm run webpack-dev-server -- --config ./build-utils/webpack/webpack.common.babel.js --env.mode development"
   },
   "repository": {
     "type": "git",
@@ -17,11 +32,24 @@
   },
   "homepage": "https://github.com/wwwsolutions/building-starter#readme",
   "devDependencies": {
+    "@babel/core": "^7.11.6",
+    "@babel/plugin-proposal-class-properties": "^7.10.4",
+    "@babel/plugin-syntax-dynamic-import": "^7.8.3",
+    "@babel/plugin-transform-modules-commonjs": "^7.10.4",
+    "@babel/plugin-transform-regenerator": "^7.10.4",
+    "@babel/plugin-transform-runtime": "^7.11.5",
+    "@babel/preset-env": "^7.11.5",
+    "@babel/register": "^7.11.5",
+    "babel-eslint": "^10.1.0",
+    "babel-loader": "^8.1.0",
     "webpack": "^4.44.2",
     "webpack-assets-manifest": "^3.1.1",
     "webpack-bundle-analyzer": "^3.9.0",
     "webpack-cli": "^3.3.12",
     "webpack-dev-server": "^3.11.0",
     "webpack-merge": "^5.1.4"
+  },
+  "dependencies": {
+    "@babel/runtime": "^7.11.2"
   }
 }
