@@ -9,5 +9,11 @@
     "scss.validate": false,
     "files.associations": {
         "*.css": "scss"
+    },
+    "cSpell.ignoreWords": [
+        "plugable"
+    ],
+    "json": {
+        "json.maxitemsComputed": 15000
     }
 }
